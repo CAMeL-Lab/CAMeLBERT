@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import List, Optional, Union
 import torch
+import torch.nn as nn
 from torch.utils.data import Dataset
 from transformers import PreTrainedTokenizer
 
