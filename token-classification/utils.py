@@ -7,7 +7,9 @@ import os
 from dataclasses import dataclass
 from enum import Enum
 from typing import List, Optional, Union
-from transformers import PreTrainedTokenizer, is_torch_available
+import torch
+from torch.utils.data import Dataset
+from transformers import PreTrainedTokenizer
 
 
 logger = logging.getLogger(__name__)
