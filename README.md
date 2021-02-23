@@ -19,6 +19,11 @@ pip install -r requirements.txt
 # Fine-tuning Experiments:
 
 ## Text Classification:
+### Sentiment Analysis:
+
+### Dialect Identification:
+
+### Poetry Classification: 
 
 ## Token Classification:
 
