@@ -161,12 +161,12 @@ def read_examples_from_file(data_dir, mode: Union[Split, str]) -> List[InputExam
             else:
                 splits = line.split(" ")
                 words.append(splits[0])
-                if len(splits) > 1:
-                    labels.append(splits[-1].replace("\n", ""))
-                else:
-                    # Examples could have no label for mode = "test"
-                    # This is needed to get around the Trainer evaluation
-                    labels.append("O")
+                #if len(splits) > 1:
+                labels.append(splits[-1].replace("\n", ""))
+                #else:
+                #    # Examples could have no label for mode = "test"
+                #    # This is needed to get around the Trainer evaluation
+                #    labels.append("O")
         if words:
             examples.append(InputExample(guid=f"{mode}-{guid_index}",
                             words=words, labels=labels))
@@ -271,6 +271,6 @@ def get_labels(path: str) -> List[str]:
     # Adding O to the labels to get around the
     # Trainer eval at test time if tokens don't
     # have any labels
-    if "O" not in labels:
-        labels = ["O"] + labels
+    # if "O" not in labels:
+    #    labels = ["O"] + labels
     return labels
