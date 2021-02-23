@@ -1,5 +1,31 @@
+# -*- coding: utf-8 -*-
+
+# MIT License
+#
+# Copyright 2018-2021 New York University Abu Dhabi
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 """ Token classification fine-tuning: utilities to work with token
-classification tasks (NER, POS tagging, etc.) """
+classification tasks (NER, POS tagging, etc.).
+    Heavily adapted from: https://github.com/huggingface/transformers/blob/
+    v3.0.1/examples/token-classification/utils_ner.py"""
 
 
 import logging
@@ -55,7 +81,7 @@ class Split(Enum):
     test = "test"
 
 
-class NerDataset(Dataset):
+class TokenClassificationDataSet(Dataset):
     """
     This will be superseded by a framework-agnostic approach
     soon.
@@ -139,7 +165,7 @@ def read_examples_from_file(data_dir, mode: Union[Split, str]) -> List[InputExam
                     labels.append(splits[-1].replace("\n", ""))
                 else:
                     # Examples could have no label for mode = "test"
-                    # We need this just to get around the Trainer evaluation
+                    # This is needed to get around the Trainer evaluation
                     labels.append("O")
         if words:
             examples.append(InputExample(guid=f"{mode}-{guid_index}",
@@ -227,9 +253,7 @@ def convert_examples_to_features(
             InputFeatures(input_ids=input_ids,
                           attention_mask=input_mask,
                           token_type_ids=segment_ids,
-                          label_ids=label_ids
-            )
-        )
+                          label_ids=label_ids))
 
     return features
 
@@ -237,6 +261,9 @@ def convert_examples_to_features(
 def get_labels(path: str) -> List[str]:
     with open(path, "r") as f:
         labels = f.read().splitlines()
+    # Adding O to the labels to get around the
+    # Trainer eval at test time if tokens don't
+    # have any labels
     if "O" not in labels:
         labels = ["O"] + labels
     return labels
