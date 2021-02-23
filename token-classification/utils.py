@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 """ Token classification fine-tuning: utilities to work with token
-classification tasks (NER, POS tagging, etc.).
+    classification tasks (NER, POS tagging, etc.)
     Heavily adapted from: https://github.com/huggingface/transformers/blob/
     v3.0.1/examples/token-classification/utils_ner.py"""
 

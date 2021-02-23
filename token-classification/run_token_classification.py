@@ -325,8 +325,8 @@ def main():
                             if not preds_list[example_id]:
                                 example_id += 1
                         elif preds_list[example_id]:
-                            output_line = line.split()[0] + " " + 
-                                          preds_list[example_id].pop(0) + "\n"
+                            output_line = (line.split()[0] + " " + 
+                                          preds_list[example_id].pop(0) + "\n")
                             writer.write(output_line)
                         else:
                             logger.warning(
