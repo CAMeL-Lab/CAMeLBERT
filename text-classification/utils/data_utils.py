@@ -23,8 +23,7 @@
 # SOFTWARE.
 
 """
-Text classification utils
-Heavily adapted from: 
+Text classification tasks utils
 """
 
 import logging
