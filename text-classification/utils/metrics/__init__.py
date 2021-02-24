@@ -27,16 +27,7 @@ Some parts of this script are adapted from the code of Wolf et al. https://arxiv
 Which is available at: https://github.com/huggingface/transformers
 """
 
-try:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from sklearn.metrics import f1_score, precision_score, recall_score
-    _has_sklearn = True
-except (AttributeError, ImportError) as e:
-    _has_sklearn = False
-
-def is_sklearn_available():
-    return _has_sklearn
+from sklearn.metrics import f1_score, precision_score, recall_score
 
 
 SENTIMENT_LABELS = ["positive", "negative", "neutral"]
