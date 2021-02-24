@@ -102,10 +102,10 @@ python run_text_classification.py \
 ### NER:
 
 ```bash
-export DATA_DIR=ANERCorp-CamelLabSplits/
+export DATA_DIR=/path/to/data                 # Should contain train/dev/test/labels files
 export MAX_LENGTH=500
-export BERT_MODEL=/scratch/ba63/bert-base-arabertv02/
-export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/ner_models/arabertv2_NER_test
+export BERT_MODEL=/path/to/pretrained_model/  # Or huggingface model id
+export OUTPUT_DIR=/path/to/output_dir
 export BATCH_SIZE=32
 export NUM_EPOCHS=3
 export SAVE_STEPS=750
