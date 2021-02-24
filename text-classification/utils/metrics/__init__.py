@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright 2018-2019 New York University Abu Dhabi
+# Copyright 2018-2020 New York University Abu Dhabi
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -29,9 +29,8 @@ Which is available at: https://github.com/huggingface/transformers
 
 try:
     import pandas as pd
-    import seaborn as sn
     import matplotlib.pyplot as plt
-    from sklearn.metrics import f1_score, precision_score, recall_score, confusion_matrix
+    from sklearn.metrics import f1_score, precision_score, recall_score
     _has_sklearn = True
 except (AttributeError, ImportError) as e:
     _has_sklearn = False
@@ -146,26 +145,6 @@ def acc_and_f1_DID(preds, labels, labels_str):
         # "INDIVIDUAL SCORES": individual_scores
         }
 
-def get_confusion_matrix(preds, labels):
-    confusion = confusion_matrix(y_true=labels, y_pred=preds, labels=[0, 1, 2])
-    labels = ["positive", "negative", "neutral"]
-    dfm = pd.DataFrame(confusion, index=[i for i in labels], columns=[i for i in labels])
-    fig = plt.figure(figsize=(5.75, 4.14), dpi=300, facecolor='w', edgecolor='k')
-    ax = sn.heatmap(dfm, annot=True, linewidths=2.5, fmt='d', cmap=sn.cubehelix_palette(8), 
-                    annot_kws={'fontdict': {'size': 24}}, cbar=False, square=True)
-    ax.xaxis.set_ticks_position('top')
-    ax.set_xlabel('Predicted', fontsize=32)
-    ax.set_ylabel('Actual', fontsize=32)
-    ax.set_xticklabels(ax.get_xticklabels())
-    ax.set_yticklabels(ax.get_yticklabels(), rotation=0)
-    b, t = plt.ylim() # discover the values for bottom and top
-    b += 0.5 # Add 0.5 to the bottom
-    t -= 0.5 # Subtract 0.5 from the top
-    plt.ylim(b, t) # update the ylim(bottom, top) values
-    plt.savefig('bert_sentiment_confusion_matrix.png', bbox_inches='tight')
-    return confusion
-
-
 def write_predictions(path_dir, task_name, preds):
     predictions_file = open(path_dir, mode='w')
     if task_name == "arabic_did_madar_twitter":
@@ -178,7 +157,6 @@ def compute_metrics(task_name, preds, labels):
     assert len(preds) == len(labels)
 
     if task_name == "arabic_sentiment":
-        # get_confusion_matrix(preds, labels)
         return acc_and_f1_sentiment(preds, labels)
 
     elif task_name == "arabic_poetry":
