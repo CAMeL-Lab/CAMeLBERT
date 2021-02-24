@@ -23,8 +23,7 @@
 # SOFTWARE.
 
 """
-Some parts of this script are adapted from the code of Wolf et al. https://arxiv.org/abs/1910.03771
-Which is available at: https://github.com/huggingface/transformers
+Text classification tasks evaluation utils
 """
 
 from sklearn.metrics import f1_score, precision_score, recall_score
