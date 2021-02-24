@@ -23,7 +23,8 @@
 # SOFTWARE.
 
 """
-Dialect identification voting evaluation
+Dialect identification voting evaluation.
+This is used specifically for the MADAR-Twitter-5 task
 """
 
 from collections import Counter
