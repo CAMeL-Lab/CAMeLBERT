@@ -19,16 +19,113 @@ pip install -r requirements.txt
 # Fine-tuning Experiments:
 
 ## Text Classification:
+
 ### Sentiment Analysis:
+```bash
+export DATA_DIR=/path/to/data
+export TASK_NAME=arabic_sentiment
+
+python run_text_classification.py \
+  --model_type bert \
+  --model_name_or_path /path/to/pretrained_model/  # Or huggingface model id \
+  --task_name $TASK_NAME \
+  --do_train \
+  --do_eval \
+  --eval_all_checkpoints \
+  --save_steps 500 \
+  --data_dir $DATA_DIR \
+  --max_seq_length 128 \
+  --per_gpu_train_batch_size 32 \
+  --per_gpu_eval_batch_size 32 \
+  --learning_rate 3e-5 \
+  --num_train_epochs 3.0 \
+  --overwrite_output_dir \
+  --overwrite_cache \
+  --output_dir /path/to/output_dir \
+  --seed 12345
+```
 
 ### Dialect Identification:
 
-### Poetry Classification: 
+```bash
+export DATA_DIR=/path/to/data
+export TASK_NAME=arabic_did_madar_26 # or arabic_did_madar_6, arabic_did_madar_twitter, arabic_did_nadi_country
+
+python run_text_classification.py \
+  --model_type bert \
+  --model_name_or_path /path/to/pretrained_model/  # Or huggingface model id \
+  --task_name $TASK_NAME \
+  --do_train \
+  --do_eval \
+  --eval_all_checkpoints \
+  --save_steps 500 \
+  --data_dir $DATA_DIR \
+  --max_seq_length 128 \
+  --per_gpu_train_batch_size 32 \
+  --per_gpu_eval_batch_size 32 \
+  --learning_rate 3e-5 \
+  --num_train_epochs 10.0 \
+  --overwrite_output_dir \
+  --overwrite_cache \
+  --output_dir /path/to/output_dir \
+  --seed 12345
+```
+
+### Poetry Classification:
+
+```bash
+export DATA_DIR=/path/to/data
+export TASK_NAME=arabic_poetry
+
+python run_text_classification.py \
+  --model_type bert \
+  --model_name_or_path /path/to/pretrained_model/  # Or huggingface model id \
+  --task_name $TASK_NAME \
+  --do_train \
+  --do_eval \
+  --eval_all_checkpoints \
+  --save_steps 5000 \
+  --data_dir $DATA_DIR \
+  --max_seq_length 128 \
+  --per_gpu_train_batch_size 32 \
+  --per_gpu_eval_batch_size 32 \
+  --learning_rate 3e-5 \
+  --num_train_epochs 3.0 \
+  --overwrite_output_dir \
+  --overwrite_cache \
+  --output_dir /path/to/output_dir \
+  --seed 12345
+```
 
 ## Token Classification:
 
 ### NER:
 
+```bash
+export DATA_DIR=ANERCorp-CamelLabSplits/
+export MAX_LENGTH=500
+export BERT_MODEL=/scratch/ba63/bert-base-arabertv02/
+export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/ner_models/arabertv2_NER_test
+export BATCH_SIZE=32
+export NUM_EPOCHS=3
+export SAVE_STEPS=750
+export SEED=12345
+
+ python run_token_classification.py \
+  --data_dir $DATA_DIR \
+  --labels $DATA_DIR/labels.txt \
+  --model_name_or_path $BERT_MODEL \
+  --output_dir $OUTPUT_DIR \
+  --max_seq_length  $MAX_LENGTH \
+  --num_train_epochs $NUM_EPOCHS \
+  --per_device_train_batch_size $BATCH_SIZE \
+  --save_steps $SAVE_STEPS \
+  --seed $SEED \
+  --overwrite_output_dir \
+  --overwrite_cache \
+  --do_train \
+  --do_predict
+```
 
 ### POS Tagging:
 
@@ -51,18 +148,18 @@ export SAVE_STEPS=500
 export SEED=12345
 
 python run_token_classification.py \
---data_dir $DATA_DIR \
---labels $DATA_DIR/labels.txt \
---model_name_or_path $BERT_MODEL \
---output_dir $OUTPUT_DIR \
---max_seq_length  $MAX_LENGTH \
---num_train_epochs $NUM_EPOCHS \
---per_device_train_batch_size $BATCH_SIZE \
---save_steps $SAVE_STEPS \
---seed $SEED \
---overwrite_output_dir \
---overwrite_cache \
---do_train \
---do_eval
+  --data_dir $DATA_DIR \
+  --labels $DATA_DIR/labels.txt \
+  --model_name_or_path $BERT_MODEL \
+  --output_dir $OUTPUT_DIR \
+  --max_seq_length  $MAX_LENGTH \
+  --num_train_epochs $NUM_EPOCHS \
+  --per_device_train_batch_size $BATCH_SIZE \
+  --save_steps $SAVE_STEPS \
+  --seed $SEED \
+  --overwrite_output_dir \
+  --overwrite_cache \
+  --do_train \
+  --do_eval
 ```
 After that, we run the evaluation on all the checkpoints and pick the one that has the best performance on the dev set; take a look at [run_pos_tagging_pred.sh]().
