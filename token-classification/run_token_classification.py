@@ -77,8 +77,9 @@ class ModelArguments:
         default=None, metadata={"help": "Pretrained tokenizer name or path if "
                                         "not the same as model_name"}
     )
-    use_fast: bool = field(default=False, metadata={"help": "Set this flag to use"
-                                                            "fast tokenization."})
+    use_fast: bool = field(default=False, metadata={"help": "Set this flag to "
+                                                            "use fast "
+                                                            "tokenization."})
     # If you want to tweak more attributes on your tokenizer, you should do it
     # in a distinct script, or just modify its tokenizer_config.json.
     cache_dir: Optional[str] = field(
@@ -127,7 +128,9 @@ def main():
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
         # If we pass only one argument to the script and it's the path to a
         # json file, let's parse it to get our arguments.
-        model_args, data_args, training_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
+        model_args, data_args, training_args = parser.parse_json_file(
+                                                    json_file=os.path.abspath(
+                                                                 sys.argv[1]))
     else:
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
@@ -223,7 +226,8 @@ def main():
         else None
     )
 
-    def align_predictions(predictions: np.ndarray, label_ids: np.ndarray) -> Tuple[List[int], List[int]]:
+    def align_predictions(predictions: np.ndarray,
+                          label_ids: np.ndarray) -> Tuple[List[int], List[int]]:
         preds = np.argmax(predictions, axis=2)
 
         batch_size, seq_len = preds.shape
@@ -320,7 +324,8 @@ def main():
                 with open(os.path.join(data_args.data_dir, "test.txt"), "r") as f:
                     example_id = 0
                     for line in f:
-                        if line.startswith("-DOCSTART-") or line == "" or line == "\n":
+                        if (line.startswith("-DOCSTART-") or line == ""
+                            or line == "\n"):
                             writer.write(line)
                             if not preds_list[example_id]:
                                 example_id += 1
