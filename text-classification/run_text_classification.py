@@ -24,7 +24,8 @@
 
 """
 Fine-tuning code for text classification tasks
-Heavily adapted from: https://github.com/huggingface/transformers/blob/master/examples/run_glue.py
+Heavily adapted from: https://github.com/huggingface/transformers/blob/
+                      v2.5.1/examples/run_glue.py
 """
 
 import argparse
@@ -59,10 +60,6 @@ from utils.data_utils import output_modes
 from utils.data_utils import processors
 from utils.data_utils import convert_examples_to_features
 
-try:
-    from torch.utils.tensorboard import SummaryWriter
-except ImportError:
-    from tensorboardX import SummaryWriter
 
 logger = logging.getLogger(__name__)
 
@@ -77,8 +74,6 @@ def set_seed(args):
 
 def train(args, train_dataset, model, tokenizer):
     """ Train the model """
-    if args.local_rank in [-1, 0]:
-        tb_writer = SummaryWriter()
 
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
     train_sampler = (RandomSampler(train_dataset) if args.local_rank == -1
@@ -120,9 +115,9 @@ def train(args, train_dataset, model, tokenizer):
                 num_training_steps=t_total)
 
     # Check if saved optimizer or scheduler states exist
-    if os.path.isfile(os.path.join(args.model_name_or_path, "optimizer.pt"))
+    if (os.path.isfile(os.path.join(args.model_name_or_path, "optimizer.pt"))
        and os.path.isfile(os.path.join(args.model_name_or_path, "scheduler.pt")
-    ):
+       )):
         # Load in optimizer and scheduler states
         optimizer.load_state_dict(torch.load(
                                   os.path.join(args.model_name_or_path,
@@ -268,8 +263,6 @@ def train(args, train_dataset, model, tokenizer):
                     logs["loss"] = loss_scalar
                     logging_loss = tr_loss
 
-                    for key, value in logs.items():
-                        tb_writer.add_scalar(key, value, global_step)
                     print(json.dumps({**logs, **{"step": global_step}}))
 
                 if (args.local_rank in [-1, 0] and args.save_steps > 0 and 
@@ -303,8 +296,6 @@ def train(args, train_dataset, model, tokenizer):
             train_iterator.close()
             break
 
-    if args.local_rank in [-1, 0]:
-        tb_writer.close()
 
     return global_step, tr_loss / global_step
 
@@ -540,7 +531,7 @@ def main():
         "--max_seq_length",
         default=128,
         type=int,
-        help="The maximum total input sequence length after tokenization. 
+        help="The maximum total input sequence length after tokenization. "
              "Sequences longer than this will be truncated, sequences shorter "
              "will be padded.",
     )
