@@ -21,6 +21,10 @@ pip install -r requirements.txt
 ## Text Classification:
 
 ### Sentiment Analysis:
+
+For the sentiment analysis experiments, we combined four datasets: 1) [ArSAS](); 2) [ASTD](); 3) [SemEval-2017 4A](); 4) [ArSenTD]().</br>
+
+
 ```bash
 export DATA_DIR=/path/to/data
 export TASK_NAME=arabic_sentiment
@@ -46,6 +50,9 @@ python run_text_classification.py \
 ```
 
 ### Dialect Identification:
+
+For the dialect identification experiments
+
 
 ```bash
 export DATA_DIR=/path/to/data
@@ -100,6 +107,10 @@ python run_text_classification.py \
 ## Token Classification:
 
 ### NER:
+
+For the NER experiments, we used the [ANERCorp]() dataset and followed the splits defined by [Obeid et al., 2020]().
+The dataset doesn't have a dev split, so we fine-tune the models on the train split and evaluate the last checkpoint on the test split.
+
 
 ```bash
 export DATA_DIR=/path/to/data                 # Should contain train/dev/test/labels files
