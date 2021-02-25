@@ -153,7 +153,7 @@ For the POS tagging experiments, we fine-tuned the models on three different dat
 2. Egyptian Arabic Treebank ([ARZATB]()): in EGY and has 33 POS tags
 3. [GUMAR]() corpus: in GLF and includes 35 POS tags
 
-We used the same hyperparameters for the 3 datasets. To run the fine-tuning:
+We used the same hyperparameters for the 3 datasets and report the results of the best checkpoints on the dev splits. To run the fine-tuning:
 
 ```bash
 export DATA_DIR=/path/to/data                 # Should contain train/dev/test/labels files
