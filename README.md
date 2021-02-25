@@ -24,7 +24,7 @@ All fine-tuned models can be found [here](https://drive.google.com/drive/folders
 
 ### Sentiment Analysis:
 
-For the sentiment analysis experiments, we combined four datasets: 1) [ArSAS](http://lrec-conf.org/workshops/lrec2018/W30/pdf/22_W30.pdf); 2) [ASTD](https://www.aclweb.org/anthology/D15-1299.pdf); 3) [SemEval-2017 4A](https://www.aclweb.org/anthology/S17-2088.pdf); 4) [ArSenTD]().</br>
+For the sentiment analysis experiments, we combined four datasets: 1) [ArSAS](http://lrec-conf.org/workshops/lrec2018/W30/pdf/22_W30.pdf); 2) [ASTD](https://www.aclweb.org/anthology/D15-1299.pdf); 3) [SemEval-2017 4A](https://www.aclweb.org/anthology/S17-2088.pdf); 4) [ArSenTD](https://arxiv.org/pdf/1906.01830.pdf).</br>
 The models were fine-tuned on ArSenTD and the train splits of ArSAS, ASTD, and SemEval-2017. We then evaluate all the checkpoints on 
 a single dev split from ArSAS, ASTD, and SemEval-2017 and pick the best checkpoint to report the results on the test splits of ArSAS, ASTD, and SemEval-2017 repsectively. To run the fine-tuning:
 
