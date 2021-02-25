@@ -146,9 +146,9 @@ export SEED=12345
 
 For the POS tagging experiments, we fine-tuned the models on three different datasets:<br/>
 
-1. Penn Arabic Treebank (PATB) ([Maamouri et al., 2004]()): in MSA and has 32 POS tags
-2. Egyptian Arabic Treebank (ARZATB) ([Maamouri et al., 2012]()): in EGY and has 33 POS tags
-3. GUMAR corpus ([Khalifa et al., 2018]()): in GLF and includes 35 POS tags
+1. Penn Arabic Treebank ([PATB]()): in MSA and has 32 POS tags
+2. Egyptian Arabic Treebank ([ARZATB]()): in EGY and has 33 POS tags
+3. [GUMAR]() corpus: in GLF and includes 35 POS tags
 
 We used the same hyperparameters for the 3 datasets. To run the fine-tuning:
 
