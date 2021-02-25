@@ -24,7 +24,7 @@ All fine-tuned models can be found [here](https://drive.google.com/drive/folders
 
 ### Sentiment Analysis:
 
-For the sentiment analysis experiments, we combined four datasets: 1) [ArSAS](); 2) [ASTD](); 3) [SemEval-2017 4A](); 4) [ArSenTD]().</br>
+For the sentiment analysis experiments, we combined four datasets: 1) [ArSAS](http://lrec-conf.org/workshops/lrec2018/W30/pdf/22_W30.pdf); 2) [ASTD](https://www.aclweb.org/anthology/D15-1299.pdf); 3) [SemEval-2017 4A](https://www.aclweb.org/anthology/S17-2088.pdf); 4) [ArSenTD]().</br>
 The models were fine-tuned on ArSenTD and the train splits of ArSAS, ASTD, and SemEval-2017. We then evaluate all the checkpoints on 
 a single dev split from ArSAS, ASTD, and SemEval-2017 and pick the best checkpoint to report the results on the test splits of ArSAS, ASTD, and SemEval-2017 repsectively. To run the fine-tuning:
 
@@ -54,7 +54,7 @@ python run_text_classification.py \
 
 ### Dialect Identification:
 
-For the dialect identification experiments, we fine-tuned the models on four different dialect identification datasets: 1) [MADAR Corpus 26](); 2) [MADAR Corpus 6](); 3) [MADAR Twitter-5](); 4) [NADI Country-level](). We fine-tuned the models across the four datasets and we report results of the best checkpoints on the dev splits. To run the fine-tuning:
+For the dialect identification experiments, we fine-tuned the models on four different dialect identification datasets: 1) [MADAR Corpus 26](https://www.aclweb.org/anthology/C18-1113.pdf); 2) [MADAR Corpus 6](https://www.aclweb.org/anthology/C18-1113.pdf); 3) [MADAR Twitter-5](https://www.aclweb.org/anthology/W19-4622.pdf); 4) [NADI Country-level](https://www.aclweb.org/anthology/2020.wanlp-1.9.pdf). We fine-tuned the models across the four datasets and we report results of the best checkpoints on the dev splits. To run the fine-tuning:
 
 
 ```bash
@@ -83,7 +83,7 @@ python run_text_classification.py \
 
 ### Poetry Classification:
 
-For the poetry classification experiments, we fine-tuned the [APCD]() dataset and report the results of the best checkpoints on the dev split. To run the fine-tuning:
+For the poetry classification experiments, we fine-tuned the [APCD](https://arxiv.org/pdf/1905.05700.pdf) dataset and report the results of the best checkpoints on the dev split. To run the fine-tuning:
 
 ```bash
 export DATA_DIR=/path/to/data
@@ -116,7 +116,7 @@ Bash scripts to run text-classification fine-tuning and evaluation can be found 
 
 ### NER:
 
-For the NER experiments, we used the [ANERCorp]() dataset and followed the splits defined by [Obeid et al., 2020]().
+For the NER experiments, we used the [ANERCorp](https://link.springer.com/chapter/10.1007/978-3-540-70939-8_13) dataset and followed the splits defined by [Obeid et al., 2020](https://camel.abudhabi.nyu.edu/anercorp/).
 The dataset doesn't have a dev split, so we fine-tune the models on the train split and evaluate the last checkpoint on the test split.
 To run the fine-tuning:
 
@@ -151,9 +151,9 @@ export SEED=12345
 
 For the POS tagging experiments, we fine-tuned the models on three different datasets:<br/>
 
-1. Penn Arabic Treebank ([PATB]()): in MSA and has 32 POS tags
-2. Egyptian Arabic Treebank ([ARZATB]()): in EGY and has 33 POS tags
-3. [GUMAR]() corpus: in GLF and includes 35 POS tags
+1. Penn Arabic Treebank ([PATB](https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/nemlar2004-penn-arabic-treebank.pdf)): in MSA and has 32 POS tags
+2. Egyptian Arabic Treebank ([ARZATB](https://catalog.ldc.upenn.edu/LDC2018T23)): in EGY and has 33 POS tags
+3. [GUMAR](https://www.aclweb.org/anthology/L18-1607.pdf) corpus: in GLF and includes 35 POS tags
 
 We used the same hyperparameters for the 3 datasets and report the results of the best checkpoints on the dev splits. To run the fine-tuning:
 
