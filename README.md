@@ -107,6 +107,9 @@ python run_text_classification.py \
   --seed 12345
 ```
 
+Bash scripts to run text-classification fine-tuning and evaluation can be found in `text-classification/scripts/`.
+
+
 ## Token Classification:
 
 ### NER:
@@ -177,4 +180,5 @@ python run_token_classification.py \
   --do_train \
   --do_eval
 ```
-After that, we run the evaluation on all the checkpoints and pick the one that has the best performance on the dev set; take a look at [run_pos_tagging_pred.sh]().
+
+Bash scripts to run token-classification fine-tuning and evaluation can be found in `token-classification/scripts/`.
