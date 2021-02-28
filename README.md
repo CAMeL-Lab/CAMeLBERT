@@ -34,7 +34,7 @@ export TASK_NAME=arabic_sentiment
 
 python run_text_classification.py \
   --model_type bert \
-  --model_name_or_path /path/to/pretrained_model/  # Or huggingface model id \
+  --model_name_or_path /path/to/pretrained_model/ \ # Or huggingface model id 
   --task_name $TASK_NAME \
   --do_train \
   --do_eval \
@@ -63,7 +63,7 @@ export TASK_NAME=arabic_did_madar_26 # or arabic_did_madar_6, arabic_did_madar_t
 
 python run_text_classification.py \
   --model_type bert \
-  --model_name_or_path /path/to/pretrained_model/  # Or huggingface model id \
+  --model_name_or_path /path/to/pretrained_model/ \ # Or huggingface model id
   --task_name $TASK_NAME \
   --do_train \
   --do_eval \
@@ -91,7 +91,7 @@ export TASK_NAME=arabic_poetry
 
 python run_text_classification.py \
   --model_type bert \
-  --model_name_or_path /path/to/pretrained_model/  # Or huggingface model id \
+  --model_name_or_path /path/to/pretrained_model/ \ # Or huggingface model id
   --task_name $TASK_NAME \
   --do_train \
   --do_eval \
