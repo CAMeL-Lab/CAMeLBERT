@@ -141,6 +141,12 @@ def write_predictions(path_dir, task_name, preds):
         for pred in preds:
             predictions_file.write(MADAR_TWITTER_LABELS[pred])
             predictions_file.write('\n')
+
+    elif task_name == "arabic_did_nadi_country":
+        for pred in preds:
+            predictions_file.write(NADI_COUNTRY_LABELS[pred])
+            predictions_file.write('\n')
+
     predictions_file.close()
 
 def compute_metrics(task_name, preds, labels):
