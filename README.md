@@ -70,7 +70,7 @@ python run_text_classification.py \
   --eval_all_checkpoints \
   --save_steps 500 \
   --data_dir $DATA_DIR \
-  --max_seq_length 128 \
+  --max_seq_length 128 \ # Or 512 for arabic_did_madar_twitter
   --per_gpu_train_batch_size 32 \
   --per_gpu_eval_batch_size 32 \
   --learning_rate 3e-5 \
@@ -123,7 +123,7 @@ To run the fine-tuning:
 
 ```bash
 export DATA_DIR=/path/to/data                 # Should contain train/dev/test/labels files
-export MAX_LENGTH=500
+export MAX_LENGTH=512
 export BERT_MODEL=/path/to/pretrained_model/  # Or huggingface model id
 export OUTPUT_DIR=/path/to/output_dir
 export BATCH_SIZE=32
