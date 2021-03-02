@@ -13,6 +13,12 @@
 nvidia-smi
 module purge
 
+
+################################
+# POS TAGGING FINE-TUNING SCRIPT
+################################
+
+
 # aubmindlab/bert-base-arabertv01
 # lanwuwei/GigaBERT-v4-Arabic-and-English
 # bashar-talafha/multi-dialect-bert-base-arabic
