@@ -30,6 +30,15 @@ This is used specifically for the MADAR-Twitter-5 task
 from collections import Counter
 import argparse
 
+TRAIN_LABEL_COUNTS = {'Oman': 2019, 'Qatar': 1840, 'Jordan': 1560,
+                      'Iraq': 1440, 'Saudi_Arabia': 15627, 'Kuwait': 3120,
+                      'Yemen': 1980, 'United_Arab_Emirates': 2201,
+                      'Bahrain': 1660, 'Palestine': 1100, 'Egypt': 2540,
+                      'Somalia': 880, 'Lebanon': 960, 'Mauritania': 540,
+                      'Morocco': 625, 'Syria': 700, 'Algeria': 1347,
+                      'Sudan': 1460, 'Libya': 1140, 'Tunisia': 740,
+                      'Djibouti': 40}
+
 def read_data(path):
     with open(path) as f:
         return f.readlines()
@@ -57,10 +66,11 @@ def write_final_preds(preds_per_user, output_path):
         max_pred = most_common_preds[0][0]
         check = [_ for _ in most_common_preds if _[1] == max_count]
         # if there's more than one prediction with the same count,
-        # just return Saudi_Arabia since it was the most common label 
-        # in the training data
+        # just pick the prediction that has the maximum count
+        # based on the Twitter-5 training data
         if len(check) > 1:
-            outfile.write('Saudi_Arabia')
+            max_pred = max(check, key=lambda x: x[1])[0]
+            outfile.write(max_pred)
             outfile.write('\n')
         else:
             outfile.write(max_pred)
