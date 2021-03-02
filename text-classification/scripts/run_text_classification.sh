@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p condo 
+#SBATCH -p condo
 # use gpus
 #SBATCH --gres=gpu:1
 # memory
@@ -12,6 +12,10 @@
 
 nvidia-smi
 module purge
+
+#######################################
+# Text classification fine-tuning script
+#######################################
 
 export ARABIC_DATA=data/train
 export TASK_NAME=arabic_sentiment
