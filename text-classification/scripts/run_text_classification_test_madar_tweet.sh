@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p nvidia 
+#SBATCH -p condo 
 # use gpus
 #SBATCH --gres=gpu:1
 # memory
@@ -12,6 +12,11 @@
 
 nvidia-smi
 module purge
+
+###################################
+# MADAR-Twitter-5 dev eval script
+###################################
+
 
 # export ARABIC_DATA=data/train
 # export TASK_NAME=arabic_sentiment
@@ -55,7 +60,7 @@ for f in $OUTPUT_DIR $OUTPUT_DIR/checkpoint-*/
 do
 python run_text_classification.py \
   --model_type bert \
-  --model_name_or_path /scratch/nlp/CAMeLBERT/model/bert-base-wp-30k_msl-512-MSA-sixteenth-1000000-step \
+  --model_name_or_path  /scratch/nlp/CAMeLBERT/model/bert-base-wp-30k_msl-512-MSA-sixteenth-1000000-step \
   --task_name $TASK_NAME \
   --do_eval \
   --write_preds \
