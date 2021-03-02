@@ -54,7 +54,7 @@ python run_text_classification.py \
 
 ### Dialect Identification:
 
-For the dialect identification experiments, we fine-tuned the models on four different dialect identification datasets: 1) [MADAR Corpus 26](https://www.aclweb.org/anthology/C18-1113.pdf); 2) [MADAR Corpus 6](https://www.aclweb.org/anthology/C18-1113.pdf); 3) [MADAR Twitter-5](https://www.aclweb.org/anthology/W19-4622.pdf); 4) [NADI Country-level](https://www.aclweb.org/anthology/2020.wanlp-1.9.pdf). We fine-tuned the models across the four datasets and we report results of the best checkpoints on the dev splits. To run the fine-tuning:
+For the dialect identification experiments, we fine-tuned the models on four different dialect identification datasets: 1) [MADAR Corpus 26](https://www.aclweb.org/anthology/C18-1113.pdf); 2) [MADAR Corpus 6](https://www.aclweb.org/anthology/C18-1113.pdf); 3) [MADAR Twitter-5](https://www.aclweb.org/anthology/W19-4622.pdf); 4) [NADI Country-level](https://www.aclweb.org/anthology/2020.wanlp-1.9.pdf). We fine-tuned the models across the four datasets and we pick the best checkpoints on the dev sets to report results on the test sets. To run the fine-tuning:
 
 
 ```bash
@@ -83,7 +83,7 @@ python run_text_classification.py \
 
 ### Poetry Classification:
 
-For the poetry classification experiments, we fine-tuned the [APCD](https://arxiv.org/pdf/1905.05700.pdf) dataset and report the results of the best checkpoints on the dev split. To run the fine-tuning:
+For the poetry classification experiments, we fine-tuned the models on the [APCD](https://arxiv.org/pdf/1905.05700.pdf) dataset. For each model, we pick the best checkpoint based on the dev set to report results on the test set. To run the fine-tuning:
 
 ```bash
 export DATA_DIR=/path/to/data
@@ -155,7 +155,7 @@ For the POS tagging experiments, we fine-tuned the models on three different dat
 2. Egyptian Arabic Treebank ([ARZATB](https://catalog.ldc.upenn.edu/LDC2018T23)): in EGY and has 33 POS tags
 3. [GUMAR](https://www.aclweb.org/anthology/L18-1607.pdf) corpus: in GLF and includes 35 POS tags
 
-We used the same hyperparameters for the 3 datasets and report the results of the best checkpoints on the dev splits. To run the fine-tuning:
+We used the same hyperparameters for the 3 datasets and report results on the test sets by using the best checkpoints on the dev sets. To run the fine-tuning:
 
 ```bash
 export DATA_DIR=/path/to/data                 # Should contain train/dev/test/labels files
