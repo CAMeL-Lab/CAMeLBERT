@@ -13,6 +13,11 @@
 nvidia-smi
 module purge
 
+
+##########################
+# NER FINE-TUNING SCRIPT
+##########################
+
 # aubmindlab/bert-base-arabertv01
 # lanwuwei/GigaBERT-v4-Arabic-and-English
 # bashar-talafha/multi-dialect-bert-base-arabic
@@ -31,9 +36,9 @@ module purge
 # /scratch/ba63/bert-base-arabertv02/
 
 export DATA_DIR=ANERCorp-CamelLabSplits/
-export MAX_LENGTH=500
-export BERT_MODEL=/scratch/ba63/bert-base-arabertv02/
-export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/ner_models/arabertv2_NER_test
+export MAX_LENGTH=512
+export BERT_MODEL=/scratch/nlp/CAMeLBERT/model/bert-base-wp-30k_msl-512-MSA-sixteenth-1000000-step
+export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/ner_models/CAMeLBERT_MSA_sixteenth_NER
 export BATCH_SIZE=32
 export NUM_EPOCHS=3
 export SAVE_STEPS=750
