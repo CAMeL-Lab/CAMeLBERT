@@ -169,7 +169,12 @@ def convert_examples_to_features(examples, tokenizer,
                                                           max_length))
 
         if output_mode == "classification":
-            label = label_map[example.label]
+            # DUMMY GOLD LABEL FOR NADI TEST
+            # BECAUSE WE DON'T HAVE THE GOLD LABELS
+            # AND WE RUN THE EVAL ON TEST USING
+            # CODALAB
+            label = (label_map[example.label] if example.label is not None
+                                              else label_map['Syria'])
         elif output_mode == "regression":
             label = float(example.label)
         else:
@@ -184,6 +189,7 @@ def convert_examples_to_features(examples, tokenizer,
                         " ".join([str(x) for x in attention_mask]))
             logger.info("token_type_ids: %s" %
                         " ".join([str(x) for x in token_type_ids]))
+
             logger.info("label: %s (id = %d)" % (example.label, label))
 
         features.append(
@@ -333,7 +339,8 @@ class ArabicPoetryProcessor(DataProcessor):
         return verse
 
 class ArabicDIDProcessor_MADAR_26(DataProcessor):
-    """Processor for Arabic Dialect ID Classification"""
+    """Processor for Arabic Dialect ID Classification
+       on MADAR Corpus 26"""
 
     def get_example_from_tensor_dict(self, tensor_dict):
         """See base class."""
@@ -428,6 +435,14 @@ class ArabicDIDProcessor_MADAR_6(DataProcessor):
             self._read_tsv(os.path.join(data_dir, "MADAR-Corpus-6-dev.tsv")),
                                         "dev")
 
+    def get_test_examples(self, data_dir):
+        """See base class."""
+        logger.info("LOOKING AT {}".format(os.path.join(data_dir,
+                    "MADAR-Corpus-6-test.tsv")))
+        return self._create_examples(
+            self._read_tsv(os.path.join(data_dir, "MADAR-Corpus-6-test.tsv")),
+                                        "test")
+
     def get_labels(self):
         return MADAR_6_LABELS
 
@@ -446,7 +461,7 @@ class ArabicDIDProcessor_MADAR_6(DataProcessor):
 
 class ArabicDIDProcessor_MADAR_Twitter(DataProcessor):
     """Processor for Arabic Dialect ID Classification on
-       NADI Shared Task 1"""
+       MADAR Shared Task 2"""
 
     def get_example_from_tensor_dict(self, tensor_dict):
         """See base class."""
@@ -531,7 +546,11 @@ class ArabicDIDProcessor_NADI_COUNTRY(DataProcessor):
         for (i, line) in enumerate(lines[1:]):
             guid = "%s-%s" % (set_type, i)
             text_a = self.process_tweet(line[1])
-            label = line[2]
+            if set_type == 'test':
+                # WE DON'T HAVE GOLD LABELS FOR NADI TEST
+                label = None
+            else:
+                label = line[2]
             examples.append(InputExample(guid=guid, text_a=text_a,
                                          label=label))
         return examples
@@ -554,9 +573,9 @@ class ArabicDIDProcessor_NADI_COUNTRY(DataProcessor):
 
     def get_test_examples(self, data_dir):
         logger.info("LOOKING AT {}".format(os.path.join(data_dir,
-                                           "test.tsv")))
+                                           "test_unlabeled.tsv")))
         return self._create_examples(
-            self._read_tsv(os.path.join(data_dir, "test.tsv")),
+            self._read_tsv(os.path.join(data_dir, "test_unlabeled.tsv")),
                                         "test")
 
     def get_labels(self):
