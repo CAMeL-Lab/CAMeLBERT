@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p nvidia 
+#SBATCH -p condo 
 # use gpus
 #SBATCH --gres=gpu:1
 # memory
@@ -13,8 +13,30 @@
 nvidia-smi
 module purge
 
-export ARABIC_DATA=data/test
-export TASK_NAME=arabic_sentiment
+
+#######################################
+# Text classification evaluation script
+#######################################
+
+
+# export ARABIC_DATA=data/test
+# export TASK_NAME=arabic_sentiment
+
+# export ARABIC_DATA=/scratch/ba63/arabic_poetry_dataset/
+# export TASK_NAME=arabic_poetry
+
+# export ARABIC_DATA=/scratch/ba63/MADAR-SHARED-TASK-final-release-25Jul2019/MADAR-Shared-Task-Subtask-1/
+# export TASK_NAME=arabic_did_madar_26
+
+export ARABIC_DATA=/scratch/ba63/MADAR-SHARED-TASK-final-release-25Jul2019/MADAR-Shared-Task-Subtask-1/
+export TASK_NAME=arabic_did_madar_6
+
+# export ARABIC_DATA=/scratch/ba63/MADAR-SHARED-TASK-final-release-25Jul2019/MADAR-Shared-Task-Subtask-2/MADAR-tweets/
+# export TASK_NAME=arabic_did_madar_twitter
+
+
+# export ARABIC_DATA=/scratch/ba63/NADI/NADI_release/
+# export TASK_NAME=arabic_did_nadi_country
 
 # aubmindlab/bert-base-arabertv01
 # lanwuwei/GigaBERT-v4-Arabic-and-English
@@ -35,7 +57,7 @@ export TASK_NAME=arabic_sentiment
 
 python run_text_classification.py \
   --model_type bert \
-  --model_name_or_path /scratch/nlp/CAMeLBERT/model/bert-base-wp-30k_msl-512-MSA-full-1000000-step \
+  --model_name_or_path aubmindlab/bert-base-arabertv01 \
   --task_name $TASK_NAME \
   --do_pred \
   --data_dir $ARABIC_DATA \
@@ -43,5 +65,5 @@ python run_text_classification.py \
   --per_gpu_eval_batch_size 32 \
   --learning_rate 3e-5 \
   --overwrite_cache \
-  --output_dir /scratch/ba63/fine_tuned_models/sentiment_models/CAMeLBERT_MSA_arabic_sentiment/$TASK_NAME/checkpoint-2000-best/ \
+  --output_dir /scratch/ba63/fine_tuned_models/did_models_MADAR_6/arabert_DID_MADAR_6/$TASK_NAME/checkpoint-15000-best \
   --seed 12345
