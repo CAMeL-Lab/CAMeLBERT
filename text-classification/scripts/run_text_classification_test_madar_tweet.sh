@@ -65,7 +65,7 @@ python run_text_classification.py \
   --do_eval \
   --write_preds \
   --data_dir $ARABIC_DATA \
-  --max_seq_length 512 \
+  --max_seq_length 128 \
   --per_gpu_eval_batch_size 32 \
   --overwrite_cache \
   --output_dir $f \
@@ -79,6 +79,6 @@ paste -d '\t' $dev_user_ids $preds > $f/users_and_preds
 python utils/vote_did.py --preds_file_path $f/users_and_preds --output_file_path $f/users_and_preds.voting
 
 
-python /scratch/ba63/MADAR-SHARED-TASK-final-release-25Jul2019/MADAR-DID-Scorer.py  /scratch/ba63/MADAR-SHARED-TASK-final-release-25Jul2019/MADAR-Shared-Task-Subtask-2/MADAR-tweets/dev.gold.labels $f/users_and_preds.voting > $f/eval_results.voting.txt
+python /scratch/ba63/MADAR-SHARED-TASK-final-release-25Jul2019/MADAR-DID-Scorer.py  /scratch/ba63/MADAR-SHARED-TASK-final-release-25Jul2019/MADAR-Shared-Task-Subtask-2/MADAR-tweets/dev.gold.CAMeL.labels $f/users_and_preds.voting > $f/eval_results.voting.txt
 
 done
