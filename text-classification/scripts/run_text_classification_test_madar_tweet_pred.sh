@@ -55,7 +55,7 @@ export TASK_NAME=arabic_did_madar_twitter
 # /scratch/ba63/UBC-NLP/ARBERT
 # /scratch/ba63/bert-base-arabertv02
 
-export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/did_models_MADAR_twitter/CAMeLBERT_MSA_sixteenth_DID/$TASK_NAME/checkpoint-8500-best
+export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/did_models_MADAR_twitter/CAMeLBERT_MSA_sixteenth_DID/$TASK_NAME/checkpoint-10500-best/
 
 python run_text_classification.py \
   --model_type bert \
@@ -64,7 +64,7 @@ python run_text_classification.py \
   --do_pred \
   --write_preds \
   --data_dir $ARABIC_DATA \
-  --max_seq_length 512 \
+  --max_seq_length 128 \
   --per_gpu_eval_batch_size 32 \
   --overwrite_cache \
   --output_dir $OUTPUT_DIR \
