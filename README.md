@@ -70,7 +70,7 @@ python run_text_classification.py \
   --eval_all_checkpoints \
   --save_steps 500 \
   --data_dir $DATA_DIR \
-  --max_seq_length 128 \ # Or 512 for arabic_did_madar_twitter
+  --max_seq_length 128 \
   --per_gpu_train_batch_size 32 \
   --per_gpu_eval_batch_size 32 \
   --learning_rate 3e-5 \
