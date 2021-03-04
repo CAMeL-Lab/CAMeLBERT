@@ -30,14 +30,16 @@ This is used specifically for the MADAR-Twitter-5 task
 from collections import Counter
 import argparse
 
-TRAIN_LABEL_COUNTS = {'Oman': 2019, 'Qatar': 1840, 'Jordan': 1560,
-                      'Iraq': 1440, 'Saudi_Arabia': 15627, 'Kuwait': 3120,
-                      'Yemen': 1980, 'United_Arab_Emirates': 2201,
-                      'Bahrain': 1660, 'Palestine': 1100, 'Egypt': 2540,
-                      'Somalia': 880, 'Lebanon': 960, 'Mauritania': 540,
-                      'Morocco': 625, 'Syria': 700, 'Algeria': 1347,
-                      'Sudan': 1460, 'Libya': 1140, 'Tunisia': 740,
-                      'Djibouti': 40}
+
+TRAIN_LABEL_COUNTS = {"Algeria": 1096, "Bahrain": 1443, "Djibouti": 30,
+                      "Egypt": 2250, "Iraq": 1380, "Jordan": 1326,
+                      "Kuwait": 2997, "Lebanon": 831, "Libya": 1024,
+                      "Mauritania": 507, "Morocco": 505, "Oman": 1921,
+                      "Palestine": 957, "Qatar": 1758, "Saudi_Arabia": 14875,
+                      "Somalia": 486, "Sudan": 1310, "Syria": 623,
+                      "Tunisia": 575, "United_Arab_Emirates": 2074,
+                      "Yemen": 1868}
+
 
 def read_data(path):
     with open(path) as f:
