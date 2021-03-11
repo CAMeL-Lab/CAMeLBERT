@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 ## CAMeLBERT:
 
-Our eight CAMeLBERT models are available on Hugging Face's [model hub](https://huggingface.co/CAMeL-Lab) along with their detailed descriptions.
+Our eight CAMeLBERT models are available on Hugging Face's [model hub](https://huggingface.co/CAMeL-Lab) along with their detailed descriptions. Note: to download our models as described in the model hub, you would need transformers>=3.5.0. Otherwise, you could download the models manually.
 
 ## Fine-tuning Experiments:
 
