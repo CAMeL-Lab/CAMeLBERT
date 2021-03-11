@@ -2,9 +2,9 @@
 
 This repo contains code for the experiments in our paper [The Interplay of Variant, Size, and Task Type in Arabic Pre-trained Language Models]().
 
-# Requirements:
+## Requirements:
 
-This code was written for python>=3.7, pytorch 1.5.1, and transformers 3.1.0. You will need a few additional packages. Here's how you can set up the environment using conda (assuming you have conda and cuda installed):
+This code was written for python>=3.7, pytorch 1.5.1, and transformers 3.1.0. You will also need few additional packages. Here's how you can set up the environment using conda (assuming you have conda and cuda installed):
 
 ```bash
 git clone https://github.com/CAMeL-Lab/CAMeLBERT.git
@@ -16,7 +16,11 @@ conda activate CAMeLBERT
 pip install -r requirements.txt
 ```
 
-# Fine-tuning Experiments:
+## CAMeLBERT:
+
+Our eight CAMeLBERT models are available on Hugging Face's [model hub](https://huggingface.co/CAMeL-Lab) along with their detailed descriptions.
+
+## Fine-tuning Experiments:
 
 All fine-tuned models can be found [here](https://drive.google.com/drive/folders/15feD46cPcRBybdUUKKrzR9zTxj2QBJ5w?usp=sharing).
 
@@ -184,3 +188,23 @@ python run_token_classification.py \
 ```
 
 Bash scripts to run token-classification fine-tuning and evaluation can be found in `token-classification/scripts/`.
+
+## Citation:
+
+If you find any of the CAMeLBERT or the fine-tuned models useful in your work, please cite [our paper]():
+```bibtex
+@inproceedings{inoue-etal-2021-interplay,
+    title = "The Interplay of Variant, Size, and Task Type in {A}rabic Pre-trained Language Models",
+    author = "Inoue, Go  and
+      Alhafni, Bashar  and
+      Baimukan, Nurpeiis  and
+      Bouamor, Houda  and
+      Habash, Nizar",
+    booktitle = "Proceedings of the Sixth Arabic Natural Language Processing Workshop",
+    month = apr,
+    year = "2021",
+    address = "Kyiv, Ukraine (Online)",
+    publisher = "Association for Computational Linguistics",
+    abstract = "In this paper, we explore the effects of language variants, data sizes, and fine-tuning task types in Arabic pre-trained language models. To do so, we build three pre-trained language models across three variants of Arabic: Modern Standard Arabic (MSA), dialectal Arabic, and classical Arabic, in addition to a fourth language model which is pre-trained on a mix of the three. We also examine the importance of pre-training data size by building additional models that are pre-trained on a scaled-down set of the MSA variant. We compare our different models to each other, as well as to eight publicly available models by fine-tuning them on five NLP tasks spanning 12 datasets. Our results suggest that the variant proximity of pre-training data to fine-tuning data is more important than the pre-training data size. We exploit this insight in defining an optimized system selection model for the studied tasks.",
+}
+```
