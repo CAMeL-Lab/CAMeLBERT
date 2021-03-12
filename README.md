@@ -1,6 +1,6 @@
 # CAMeLBERT: A collection of pre-trained models for Arabic NLP tasks:
 
-This repo contains code for the experiments presented in our paper: [The Interplay of Variant, Size, and Task Type in Arabic Pre-trained Language Models](https://arxiv.org/abs/2103.06678).
+This repo contains code for the experiments presented in our paper: [The Interplay of Variant, Size, and Task Type in Arabic Pre-trained Language Models](https://arxiv.org/pdf/2103.06678.pdf).
 
 ## Requirements:
 
