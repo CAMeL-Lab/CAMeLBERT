@@ -555,11 +555,6 @@ def main():
         action="store_true",
         help="Run evaluation during training at each logging step.",
     )
-    parser.add_argument(
-        "--do_lower_case",
-        action="store_true",
-        help="Set this flag if you are using an uncased model.",
-    )
 
     parser.add_argument(
         "--per_gpu_train_batch_size",
@@ -782,7 +777,6 @@ def main():
     )
     tokenizer = AutoTokenizer.from_pretrained(
         args.tokenizer_name if args.tokenizer_name else args.model_name_or_path,
-        do_lower_case=args.do_lower_case,
         cache_dir=args.cache_dir if args.cache_dir else None
     )
     model = AutoModelForSequenceClassification.from_pretrained(
@@ -843,7 +837,7 @@ def main():
     best_model_checkpoint = args.output_dir
     if args.do_eval and args.local_rank in [-1, 0]:
         tokenizer = AutoTokenizer.from_pretrained(
-                        args.output_dir, do_lower_case=args.do_lower_case)
+                        args.output_dir)
         checkpoints = [args.output_dir]
         if args.eval_all_checkpoints:
             checkpoints = list(
@@ -872,8 +866,7 @@ def main():
 
     if args.do_pred and args.local_rank in [-1, 0]:
         tokenizer = AutoTokenizer.from_pretrained(
-            args.output_dir,
-            do_lower_case=args.do_lower_case
+            args.output_dir
         )
         model = AutoModelForSequenceClassification.from_pretrained(
             args.output_dir
