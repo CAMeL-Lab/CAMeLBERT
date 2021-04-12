@@ -32,7 +32,6 @@ export TASK_NAME=arabic_did_madar_twitter
 # export ARABIC_DATA=/scratch/ba63/NADI/NADI_release/
 # export TASK_NAME=arabic_did_nadi_country
 
-# aubmindlab/bert-base-arabertv01
 # lanwuwei/GigaBERT-v4-Arabic-and-English
 # bashar-talafha/multi-dialect-bert-base-arabic
 # asafaya/bert-base-arabic
@@ -49,6 +48,7 @@ export TASK_NAME=arabic_did_madar_twitter
 # /scratch/ba63/UBC-NLP/MARBERT
 # /scratch/ba63/UBC-NLP/ARBERT
 # /scratch/ba63/bert-base-arabertv02
+# /scratch/ba63/bert-base-arabertv01
 
 python run_text_classification.py \
   --model_type bert \
@@ -57,7 +57,7 @@ python run_text_classification.py \
   --do_train \
   --save_steps 500 \
   --data_dir $ARABIC_DATA \
-  --max_seq_length 512 \
+  --max_seq_length 128 \
   --per_gpu_train_batch_size 32 \
   --per_gpu_eval_batch_size 32 \
   --learning_rate 3e-5 \
