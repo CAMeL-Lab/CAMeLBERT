@@ -191,7 +191,7 @@ Bash scripts to run token-classification fine-tuning and evaluation can be found
 
 ## Citation:
 
-If you find any of the CAMeLBERT or the fine-tuned models useful in your work, please cite [our paper]():
+If you find any of the CAMeLBERT or the fine-tuned models useful in your work, please cite [our paper](https://arxiv.org/pdf/2103.06678.pdf):
 ```bibtex
 @inproceedings{inoue-etal-2021-interplay,
     title = "The Interplay of Variant, Size, and Task Type in {A}rabic Pre-trained Language Models",
