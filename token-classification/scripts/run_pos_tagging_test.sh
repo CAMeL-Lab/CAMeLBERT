@@ -33,25 +33,23 @@ module purge
 # /scratch/ba63/UBC-NLP/MARBERT
 # /scratch/ba63/UBC-NLP/ARBERT
 # /scratch/ba63/bert-base-arabertv02/
+# /scratch/ba63/bert-base-arabertv01/
 
 export DATA_DIR=/scratch/ba63/magold_files/GULF
 export MAX_LENGTH=512
-export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/pos_models/GULF/CAMeLBERT_CA_POS_GULF/checkpoint-3500-best
+export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/pos_models_new/GULF/ARBERT_POS/checkpoint-3500-best
 export BATCH_SIZE=32
-export NUM_EPOCHS=10
-export SAVE_STEPS=500
 export SEED=12345
 
 
 python run_token_classification.py \
 --data_dir $DATA_DIR \
+--task_type pos \
 --labels $DATA_DIR/labels.txt \
 --model_name_or_path $OUTPUT_DIR \
 --output_dir $OUTPUT_DIR \
 --max_seq_length  $MAX_LENGTH \
---num_train_epochs $NUM_EPOCHS \
---per_device_train_batch_size $BATCH_SIZE \
---save_steps $SAVE_STEPS \
+--per_device_eval_batch_size $BATCH_SIZE \
 --seed $SEED \
 --overwrite_cache \
 --do_pred
