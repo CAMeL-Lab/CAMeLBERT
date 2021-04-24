@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p nvidia 
+#SBATCH -p nvidia
 # use gpus
 #SBATCH --gres=gpu:1
 # memory
@@ -33,11 +33,11 @@ module purge
 # /scratch/ba63/UBC-NLP/MARBERT
 # /scratch/ba63/UBC-NLP/ARBERT
 # /scratch/ba63/bert-base-arabertv02/
+# /scratch/ba63/bert-base-arabertv01
 
-export DATA_DIR=/scratch/ba63/magold_files/EGY
+export DATA_DIR=/scratch/ba63/magold_files/GULF
 export MAX_LENGTH=512
-export BERT_MODEL=/scratch/nlp/CAMeLBERT/model/bert-base-wp-30k_msl-512-MSA-full-1000000-step
-export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/pos_models/EGY/CAMeLBERT_MSA_POS_EGY
+export OUTPUT_DIR=/scratch/ba63/fine_tuned_models/pos_models_new/GULF/ARBERT_POS
 export BATCH_SIZE=32
 export SAVE_STEPS=500
 export SEED=12345
@@ -48,11 +48,12 @@ do
 echo $f
 python run_token_classification.py \
 --data_dir $DATA_DIR \
+--task_type pos \
 --labels $DATA_DIR/labels.txt \
 --model_name_or_path $f \
 --output_dir $f \
 --max_seq_length  $MAX_LENGTH \
---per_gpu_eval_batch_size $BATCH_SIZE \
+--per_device_eval_batch_size $BATCH_SIZE \
 --seed $SEED \
 --overwrite_cache \
 --do_eval
