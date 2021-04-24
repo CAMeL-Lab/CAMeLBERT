@@ -35,6 +35,12 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 from seqeval.metrics import (
+    accuracy_score as seq_accuracy_score,
+    f1_score as seq_f1_score,
+    precision_score as seq_precision_score,
+    recall_score as seq_recall_score
+)
+from sklearn.metrics import (
     accuracy_score,
     f1_score,
     precision_score,
@@ -80,8 +86,13 @@ class ModelArguments:
     use_fast: bool = field(default=False, metadata={"help": "Set this flag to "
                                                             "use fast "
                                                             "tokenization."})
+
     # If you want to tweak more attributes on your tokenizer, you should do it
     # in a distinct script, or just modify its tokenizer_config.json.
+
+    task_type: Optional[str] = field(
+        default="ner", metadata={"help": "the name of the task (ner or pos)"}
+    )
     cache_dir: Optional[str] = field(
         default=None, metadata={"help": "Where do you want to store the "
                                         "pretrained models downloaded from s3"}
@@ -246,12 +257,34 @@ def main():
     def compute_metrics(p: EvalPrediction) -> Dict:
         preds_list, out_label_list = align_predictions(p.predictions,
                                                        p.label_ids)
-        return {
-            "accuracy": accuracy_score(out_label_list, preds_list),
-            "precision": precision_score(out_label_list, preds_list),
-            "recall": recall_score(out_label_list, preds_list),
-            "f1": f1_score(out_label_list, preds_list),
-        }
+        # If task type is NER, use seqeval metrics.
+        # Otherwise, use scikit learn
+        if model_args.task_type == "ner":
+            return {
+                "accuracy": seq_accuracy_score(out_label_list, preds_list),
+                "precision": seq_precision_score(out_label_list, preds_list),
+                "recall": seq_recall_score(out_label_list, preds_list),
+                "f1": seq_f1_score(out_label_list, preds_list),
+            }
+        else:
+            # Flatten the preds_list and out_label_list
+            preds_list = [p for sublist in preds_list for p in sublist]
+            out_label_list = [p for sublist in out_label_list for p in sublist]
+            return {
+                "accuracy": accuracy_score(out_label_list, preds_list),
+                "precision_micro": precision_score(out_label_list, preds_list,
+                                                   average="micro"),
+                "recall_micro": recall_score(out_label_list, preds_list,
+                                             average="micro"),
+                "f1_micro": f1_score(out_label_list, preds_list,
+                                     average="micro"),
+                "precision_macro": precision_score(out_label_list, preds_list,
+                                                   average="macro"),
+                "recall_macro": recall_score(out_label_list, preds_list,
+                                             average="macro"),
+                "f1_macro": f1_score(out_label_list, preds_list,
+                                     average="macro"),
+            }
 
     # Initialize our Trainer
     trainer = Trainer(
