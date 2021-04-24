@@ -75,24 +75,27 @@ class ModelArguments:
         metadata={"help": "Path to pretrained model or model identifier from "
                           "huggingface.co/models"}
     )
+
     config_name: Optional[str] = field(
         default=None, metadata={"help": "Pretrained config name or path if "
                                         "not the same as model_name"}
     )
-    tokenizer_name: Optional[str] = field(
-        default=None, metadata={"help": "Pretrained tokenizer name or path if "
-                                        "not the same as model_name"}
-    )
-    use_fast: bool = field(default=False, metadata={"help": "Set this flag to "
-                                                            "use fast "
-                                                            "tokenization."})
 
     # If you want to tweak more attributes on your tokenizer, you should do it
     # in a distinct script, or just modify its tokenizer_config.json.
 
+    tokenizer_name: Optional[str] = field(
+        default=None, metadata={"help": "Pretrained tokenizer name or path if "
+                                        "not the same as model_name"}
+    )
+
+    use_fast: bool = field(default=False, metadata={"help": "Set this flag to "
+                                                            "use fast "
+                                                            "tokenization."})
     task_type: Optional[str] = field(
         default="ner", metadata={"help": "the name of the task (ner or pos)"}
     )
+
     cache_dir: Optional[str] = field(
         default=None, metadata={"help": "Where do you want to store the "
                                         "pretrained models downloaded from s3"}
