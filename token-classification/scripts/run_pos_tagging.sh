@@ -35,6 +35,7 @@ module purge
 # /scratch/ba63/UBC-NLP/MARBERT
 # /scratch/ba63/UBC-NLP/ARBERT
 # /scratch/ba63/bert-base-arabertv02/
+# /scratch/ba63/bert-base-arabertv01
 
 export DATA_DIR=/scratch/ba63/magold_files/EGY
 export MAX_LENGTH=512
@@ -48,6 +49,7 @@ export SEED=12345
 
 python run_token_classification.py \
 --data_dir $DATA_DIR \
+--task_type pos \
 --labels $DATA_DIR/labels.txt \
 --model_name_or_path $BERT_MODEL \
 --output_dir $OUTPUT_DIR \
