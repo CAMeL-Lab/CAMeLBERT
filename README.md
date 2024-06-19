@@ -18,8 +18,10 @@ pip install -r requirements.txt
 
 ## CAMeLBERT:
 
+### Pretrained Models
 Our eight CAMeLBERT models are available on Hugging Face's [model hub](https://huggingface.co/CAMeL-Lab) along with their detailed descriptions. Note: to download our models as described in the model hub, you would need transformers>=3.5.0. Otherwise, you could download the models manually.
 
+### Arabic Frequency Lists
 We also provide a frequency lists dataset derived from the pretraining datasets (17.3B tokens) used to pretrain the family of CAMeLBert models.
 To obtain the frequency dataset, please fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSfM84AQx9uFPFYZNsslVxEJmfGz0ObA0WfrEJoKN20HKxy2sg/viewform?usp=sharing).
 
