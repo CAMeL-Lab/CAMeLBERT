@@ -23,7 +23,7 @@ Our eight CAMeLBERT models are available on Hugging Face's [model hub](https://h
 
 ### Arabic Frequency Lists
 We also provide a frequency lists dataset derived from the pretraining datasets (17.3B tokens) used to pretrain the family of CAMeLBert models.
-To obtain the frequency dataset, please fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSfM84AQx9uFPFYZNsslVxEJmfGz0ObA0WfrEJoKN20HKxy2sg/viewform?usp=sharing).
+The frequency dataset is available at https://github.com/CAMeL-Lab/Camel_Arabic_Frequency_Lists.
 
 
 ## Fine-tuning Experiments:
